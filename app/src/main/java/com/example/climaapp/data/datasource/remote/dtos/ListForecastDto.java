@@ -1,9 +1,10 @@
 package com.example.climaapp.data.datasource.remote.dtos;
 
+import com.example.climaapp.domain.entities.ListForecast;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ListForecastDto {
+public class ListForecastDto extends ListForecast {
 
     @SerializedName("main")
     @Expose
@@ -13,20 +14,8 @@ public class ListForecastDto {
     @Expose
     private String dtTxt;
 
-    public MainDto getMain() {
-        return main;
-    }
-
-    public void setMain(MainDto main) {
-        this.main = main;
-    }
-
-    public String getDtTxt() {
-        return dtTxt;
-    }
-
-    public void setDtTxt(String dtTxt) {
-        this.dtTxt = dtTxt;
-    }
+   public ListForecastDto(MainDto main, String dtTxt){
+       super(main, dtTxt);
+   }
 
 }

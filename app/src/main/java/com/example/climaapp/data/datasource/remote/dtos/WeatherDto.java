@@ -1,9 +1,10 @@
 package com.example.climaapp.data.datasource.remote.dtos;
 
+import com.example.climaapp.domain.entities.Weather;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class WeatherDto {
+public class WeatherDto extends Weather {
 
     @SerializedName("id")
     @Expose
@@ -18,36 +19,9 @@ public class WeatherDto {
     @Expose
     private String icon;
 
-    public Integer getId() {
-        return id;
-    }
+    public WeatherDto(Integer id, String main, String description,  String icon){
+        super(id, main, description, icon);
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getMain() {
-        return main;
-    }
-
-    public void setMain(String main) {
-        this.main = main;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
     }
 
 }

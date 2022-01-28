@@ -1,18 +1,24 @@
 package com.example.climaapp.domain.entities;
 
 import com.example.climaapp.data.datasource.remote.dtos.MainDto;
-import com.example.climaapp.data.datasource.remote.dtos.WeatherDto;
-import com.example.climaapp.data.datasource.remote.dtos.WindDto;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class CurrentWeather {
 
-    private List<WeatherDto> weather = null;
+    private Integer cod;
+    private List<Weather> weather;
     private String base;
-    private MainDto main;
-    private WindDto wind;
+    private Main main;
+    private Wind wind;
     private String name;
+
+    public CurrentWeather(Integer cod, List<Weather> weather, String base, MainDto main, Wind wind, String name) {
+        this.cod = cod;
+        this.weather = weather;
+        this.base = base;
+        this.main = main;
+        this.wind = wind;
+        this.name = name;
+    }
 }

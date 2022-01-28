@@ -2,16 +2,23 @@ package com.example.climaapp.data.datasource.remote.dtos;
 
 
 import com.example.climaapp.domain.entities.CurrentWeather;
+import com.example.climaapp.domain.entities.Weather;
+import com.example.climaapp.domain.entities.Wind;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class CurrentWeatherDto {
+public class CurrentWeatherDto extends  CurrentWeather{
+
+    @SerializedName("cod")
+    @Expose
+    private Integer cod;
 
     @SerializedName("weather")
     @Expose
-    private List<WeatherDto> weather = null;
+    private List<WeatherDto> weather;
 
     @SerializedName("base")
     @Expose
@@ -30,43 +37,7 @@ public class CurrentWeatherDto {
     private String name;
 
 
-    /*public List<WeatherDto> getWeather() {
-        return weather;
+    public CurrentWeatherDto(Integer cod, List<Weather> weather, String base, MainDto main, Wind wind, String name) {
+        super(cod, weather, base, main, wind, name);
     }
-
-    public void setWeather(List<WeatherDto> weather) {
-        this.weather = weather;
-    }
-
-    public String getBase() {
-        return base;
-    }
-
-    public void setBase(String base) {
-        this.base = base;
-    }
-
-    public MainDto getMain() {
-        return main;
-    }
-
-    public void setMain(MainDto main) {
-        this.main = main;
-    }
-
-    public WindDto getWind() {
-        return wind;
-    }
-
-    public void setWind(WindDto wind) {
-        this.wind = wind;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }*/
 }

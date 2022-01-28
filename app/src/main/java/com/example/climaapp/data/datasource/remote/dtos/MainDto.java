@@ -1,8 +1,9 @@
 package com.example.climaapp.data.datasource.remote.dtos;
+import com.example.climaapp.domain.entities.Main;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class MainDto {
+public class MainDto extends Main {
     @SerializedName("temp")
     @Expose
     private Double temp;
@@ -22,52 +23,7 @@ public class MainDto {
     @Expose
     private Integer humidity;
 
-    public Double getTemp() {
-        return temp;
+    public MainDto(Double temp, Double feelsLike, Double tempMin, Double tempMax, Integer pressure, Integer humidity){
+        super(temp, feelsLike, tempMin, tempMax, pressure, humidity);
     }
-
-    public void setTemp(Double temp) {
-        this.temp = temp;
-    }
-
-    public Double getFeelsLike() {
-        return feelsLike;
-    }
-
-    public void setFeelsLike(Double feelsLike) {
-        this.feelsLike = feelsLike;
-    }
-
-    public Double getTempMin() {
-        return tempMin;
-    }
-
-    public void setTempMin(Double tempMin) {
-        this.tempMin = tempMin;
-    }
-
-    public Double getTempMax() {
-        return tempMax;
-    }
-
-    public void setTempMax(Double tempMax) {
-        this.tempMax = tempMax;
-    }
-
-    public Integer getPressure() {
-        return pressure;
-    }
-
-    public void setPressure(Integer pressure) {
-        this.pressure = pressure;
-    }
-
-    public Integer getHumidity() {
-        return humidity;
-    }
-
-    public void setHumidity(Integer humidity) {
-        this.humidity = humidity;
-    }
-
 }
