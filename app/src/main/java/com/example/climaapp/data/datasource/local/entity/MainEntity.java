@@ -1,6 +1,8 @@
 package com.example.climaapp.data.datasource.local.entity;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.example.climaapp.domain.entities.Main;
@@ -9,19 +11,20 @@ import com.example.climaapp.domain.entities.Main;
 public class MainEntity extends Main {
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    @ColumnInfo(name = "id_main")
+    public int id;
 
-    private Double temp;
+    public Double temp;
 
-    private Double feelsLike;
+    public Double feelsLike;
 
-    private Double tempMin;
+    public Double tempMin;
 
-    private Double tempMax;
+    public Double tempMax;
 
-    private Integer pressure;
+    public Integer pressure;
 
-    private Integer humidity;
+    public Integer humidity;
 
     public MainEntity(Double temp, Double feelsLike, Double tempMin, Double tempMax, Integer pressure, Integer humidity) {
         super(temp, feelsLike, tempMin, tempMax, pressure, humidity);

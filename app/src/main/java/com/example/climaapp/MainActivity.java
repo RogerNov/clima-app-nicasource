@@ -15,6 +15,9 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.climaapp.databinding.ActivityMainBinding;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;

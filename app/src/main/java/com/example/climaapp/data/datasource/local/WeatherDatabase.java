@@ -6,6 +6,12 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.climaapp.data.datasource.local.dao.CurrentWeatherDao;
+import com.example.climaapp.data.datasource.local.dao.ListForecastDao;
+import com.example.climaapp.data.datasource.local.dao.MainDao;
+import com.example.climaapp.data.datasource.local.dao.WeatherDao;
+import com.example.climaapp.data.datasource.local.dao.WeatherForecastDao;
+import com.example.climaapp.data.datasource.local.dao.WindDao;
 import com.example.climaapp.data.datasource.local.entity.CurrentWeatherEntity;
 import com.example.climaapp.data.datasource.local.entity.ListForecastEntity;
 import com.example.climaapp.data.datasource.local.entity.MainEntity;
@@ -32,21 +38,22 @@ import java.util.concurrent.Executors;
                 CurrentWeatherEntity.class,
                 WeatherForecastEntity.class,
         },
-        version = 1
+        version = 1,
+        exportSchema = false
 )
 public abstract  class WeatherDatabase extends RoomDatabase {
-    public abstract WindDto windDto();
-    public abstract WeatherDto weatherDto();
-    public abstract MainDto mainDto();
-    public abstract ListForecastDto listForecastDto();
-    public abstract CurrentWeatherDto currentWeatherDto();
-    public abstract WeatherForecastDto weatherForecastDto();
+    public abstract WindDao windDao();
+    public abstract WeatherDao weatherDao();
+    public abstract MainDao mainDao();
+    public abstract ListForecastDao listForecastDao();
+    public abstract CurrentWeatherDao currentWeatherDao();
+    public abstract WeatherForecastDao weatherForecastDao();
 
     private static  volatile  WeatherDatabase INSTANCE;
     private static  final int NUMBER_OF_THREADS =4;
     static final ExecutorService databaseExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    static WeatherDatabase getDatabase(final Context context){
+    public static WeatherDatabase getDatabase(final Context context){
         if(INSTANCE == null){
             synchronized (WeatherDatabase.class){
                 if(INSTANCE == null){

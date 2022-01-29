@@ -1,29 +1,27 @@
 package com.example.climaapp.data.datasource.remote;
 
-import com.example.climaapp.data.datasource.remote.dtos.WeatherForecastDto;
 import com.example.climaapp.domain.entities.WeatherForecast;
 
-import java.io.IOException;
-
-import retrofit2.Call;
-import retrofit2.Response;
-import retrofit2.Retrofit;
+import javax.inject.Inject;
 
 public class WeatherForeCastDataSourceImp implements  WeatherForecastDataSource{
-    final Retrofit retrofit;
+    final WeatherApi weatherApi;
 
-    public WeatherForeCastDataSourceImp(Retrofit retrofit) {
-        this.retrofit = retrofit;
+    @Inject
+    public WeatherForeCastDataSourceImp(WeatherApi weatherApi) {
+        this.weatherApi = weatherApi;
     }
+
 
     @Override
     public WeatherForecast getWeatherForeCast(String cityName) {
-        Call<WeatherForecastDto> call = retrofit.create(WeatherApi.class).getWeatherForecast(cityName);
+        WeatherForecast weatherForecast = weatherApi.getWeatherForecast(cityName).body();
+        return weatherForecast;
+        /*Call<WeatherForecastDto> call = retrofit.create(WeatherApi.class).getWeatherForecast(cityName);
         try {
             Response<WeatherForecastDto> response = call.execute();
             return response.body();
         } catch (IOException e) {
-        }
-        return null;
+        }*/
     }
 }

@@ -9,10 +9,13 @@ import com.example.climaapp.domain.repository.WeatherRepository;
 import java.util.Collections;
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class CurrentWeatherRepositoryImp implements WeatherRepository {
     private final CurrentWeatherDataSource weatherDataSource;
     private final CurrentWeatherDao currentWeatherDao;
 
+    @Inject
     public CurrentWeatherRepositoryImp(CurrentWeatherDataSource weatherDataSource, CurrentWeatherDao currentWeatherDao) {
         this.weatherDataSource = weatherDataSource;
         this.currentWeatherDao = currentWeatherDao;

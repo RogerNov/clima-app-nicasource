@@ -5,10 +5,13 @@ import com.example.climaapp.domain.repository.WeatherRepository;
 
 import java.util.List;
 
-public class WeatherUseCase {
+import javax.inject.Inject;
+
+public class CurrentWeatherUseCase {
     final WeatherRepository weatherRepository;
 
-    public WeatherUseCase(WeatherRepository weatherRepository) {
+    @Inject
+    public CurrentWeatherUseCase(WeatherRepository weatherRepository) {
         this.weatherRepository = weatherRepository;
     }
 
