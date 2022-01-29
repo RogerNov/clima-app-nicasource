@@ -1,9 +1,6 @@
 package com.example.climaapp.domain.use_case;
 
-import com.example.climaapp.data.datasource.remote.dtos.CurrentWeatherDto;
-import com.example.climaapp.data.datasource.remote.dtos.WeatherForecastDto;
 import com.example.climaapp.domain.entities.CurrentWeather;
-import com.example.climaapp.domain.entities.WeatherForecast;
 import com.example.climaapp.domain.repository.WeatherRepository;
 
 import java.util.List;
@@ -15,15 +12,13 @@ public class WeatherUseCase {
         this.weatherRepository = weatherRepository;
     }
 
-    public CurrentWeatherDto getCurrentWeather(String cityName){
+    public CurrentWeather getCurrentWeatherByName(String cityName){
         return this.weatherRepository.getCurrentWeather(cityName);
     }
 
-    public List<CurrentWeatherDto> getListCurrentWeather(){
-        return this.weatherRepository.getListCurrentWheater();
+    public List<CurrentWeather> getListCurrentWeather(){
+        return this.weatherRepository.getListCurrentWeather();
     }
 
-    public WeatherForecastDto getWeatherForecast(String cityName){
-        return this.weatherRepository.getWeatherForecast(cityName);
-    }
+
 }
