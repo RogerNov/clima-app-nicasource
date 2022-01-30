@@ -1,9 +1,7 @@
 package com.example.climaapp.ui;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.climaapp.domain.entities.CurrentWeather;
 import com.example.climaapp.domain.use_case.CurrentWeatherUseCase;
 
 public class CurrentWeatherViewModel extends ViewModel {

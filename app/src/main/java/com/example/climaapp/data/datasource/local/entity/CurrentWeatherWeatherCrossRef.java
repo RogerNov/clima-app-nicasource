@@ -2,7 +2,10 @@ package com.example.climaapp.data.datasource.local.entity;
 
 import androidx.room.Entity;
 
-@Entity(primaryKeys = {"cod", ""})
-public class CurrentWeatherWetaherCrossRef {
-    public
+import com.example.climaapp.domain.entities.CurrentWeather;
+
+@Entity(primaryKeys = {"cod", "id"})
+public class CurrentWeatherWeatherCrossRef {
+    public Integer currentWeatherId;
+    public Integer weatherId;
 }
