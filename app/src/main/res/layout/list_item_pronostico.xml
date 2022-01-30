@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:paddingVertical="5dp"
+    android:paddingHorizontal="15dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border_around_info_pronostico"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        >
+        <TextView
+            android:id="@+id/tvDate"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="12/12/2022"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            />
+        <ImageView
+            android:padding="5dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:src="@drawable/sw_01"
+            app:tint="@color/black" />
+
+        <TextView
+            android:id="@+id/tvViento"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Managua"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            />
+    </LinearLayout>
+
+</LinearLayout>

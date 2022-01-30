@@ -22,4 +22,8 @@
     <style name="Theme.ClimaApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.ClimaApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme_Dialog_Translucent" parent="android:Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 </resources>
