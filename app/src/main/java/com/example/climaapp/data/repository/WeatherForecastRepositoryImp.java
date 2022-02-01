@@ -1,5 +1,7 @@
 package com.example.climaapp.data.repository;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.climaapp.data.datasource.remote.WeatherForecastDataSource;
 import com.example.climaapp.data.datasource.remote.dtos.WeatherForecastDto;
 import com.example.climaapp.domain.entities.WeatherForecast;
@@ -18,7 +20,7 @@ public class WeatherForecastRepositoryImp implements WeatherForecastRepository {
     }
 
     @Override
-    public WeatherForecast getWeatherForecast(String cityName) {
-        return null;
+    public LiveData<WeatherForecast> getWeatherForecast(String cityName) {
+        return weatherForecastDataSource.getWeatherForeCast(cityName);
     }
 }

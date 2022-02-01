@@ -1,4 +1,4 @@
-package com.example.climaapp.data.datasource.local.entity;
+package com.example.climaapp.domain.entities;
 
 import androidx.room.Embedded;
 import androidx.room.Junction;
@@ -7,11 +7,11 @@ import androidx.room.Relation;
 import java.util.List;
 
 public class WeatherForecastListForecast {
-    @Embedded public WeatherForecastEntity weatherForecast;
+    @Embedded public WeatherForecast weatherForecast;
     @Relation(
-            parentColumn = "weatherForecastId",
-            entityColumn = "ListForecastId",
+            parentColumn = "idWeatherForecast",
+            entityColumn = "idListForecast",
             associateBy = @Junction(WeatherForecastListForecastCrossRef.class)
     )
-    public List<ListForecastEntity> listForecasts;
+    public List<ListForecast> listForecasts;
 }

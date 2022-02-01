@@ -6,18 +6,19 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.climaapp.data.datasource.local.entity.WindEntity;
+import com.example.climaapp.domain.entities.Wind;
 
 import java.util.List;
+
 
 @Dao
 public interface WindDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertWeather(WindEntity windEntity);
+    void insertWind(Wind windEntity);
 
-    @Query("SELECT * FROM  WindEntity")
-    List<WindEntity> getAll();
+    @Query("SELECT * FROM  Wind")
+    List<Wind> getAll();
 
     @Delete
-    void delete(WindEntity windEntity);
+    void delete(Wind wind);
 }

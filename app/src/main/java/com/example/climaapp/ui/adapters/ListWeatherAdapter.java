@@ -1,34 +1,39 @@
 package com.example.climaapp.ui.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.climaapp.R;
+import com.example.climaapp.domain.entities.CurrentWeather;
+import com.example.climaapp.domain.entities.CurrentWeatherWithWeather;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListWeatherAdapter extends BaseAdapter {
     private Context context;
     private int layout;
-    private ArrayList<String> names;
+    private List<CurrentWeatherWithWeather> weathers;
 
-    public ListWeatherAdapter(Context context, int layout, ArrayList<String> names){
+    public ListWeatherAdapter(Context context, int layout, List<CurrentWeatherWithWeather> names){
         this.context = context;
         this.layout = layout;
-        this.names = names;
+        this.weathers = names;
     }
     @Override
     public int getCount() {
-        return this.names.size();
+        return this.weathers.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return this.names.get(i);
+        return this.weathers.get(i);
     }
 
     @Override
@@ -43,10 +48,30 @@ public class ListWeatherAdapter extends BaseAdapter {
         LayoutInflater layoutInflater = LayoutInflater.from(this.context);
         v = layoutInflater.inflate(R.layout.list_item, null);
 
-        String CurrentName = names.get(i);
+        CurrentWeatherWithWeather currentWeather = weathers.get(i);
 
-        TextView textView = (TextView) v.findViewById(R.id.tvCity);
-        textView.setText(CurrentName);
+        TextView tvCity = (TextView) v.findViewById(R.id.tvCity);
+        TextView tvHumedity = (TextView) v.findViewById(R.id.tvHumedity);
+        TextView tvTemp = (TextView) v.findViewById(R.id.tvTemp);
+        TextView tvWind = (TextView) v.findViewById(R.id.tvWind);
+        ImageView ivWeather = (ImageView) v.findViewById(R.id.ivWeather);
+
+
+        tvCity.setText(currentWeather.currentWeatherEntity.name);
+        tvHumedity.setText(String.valueOf(currentWeather.currentWeatherEntity.main.humidity));
+        tvTemp.setText(String.valueOf(currentWeather.currentWeatherEntity.main.temp));
+        tvWind.setText(String.valueOf(currentWeather.currentWeatherEntity.wind.speed));
+
+        Log.d("Totales "+i, String.valueOf(currentWeather.weathers.size()));
+        if(currentWeather.weathers.size() >0){
+            int resId = context.getResources().getIdentifier(
+                    currentWeather.weathers.get(0).icon,
+                    "drawable", context.getPackageName()
+            );
+
+            ivWeather.setImageResource(resId);
+        }
+
         return v;
     }
 }

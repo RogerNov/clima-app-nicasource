@@ -6,14 +6,14 @@ import com.example.climaapp.data.datasource.remote.dtos.WeatherForecastDto;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface WeatherApi {
 
-    @GET("weather?q={cityName}&appid=5daa64b3b1524be2f8902896607c6084")
-    Response<CurrentWeatherDto> getCurrentWeather(@Path("cityName") String cityName);
+    @GET("weather?")
+    Call<CurrentWeatherDto> getCurrentWeather(@Query("q") String cityName, @Query("appid") String appId);
 
-    @GET("2.5/forecast?q={cityName}&appid=5daa64b3b1524be2f8902896607c6084")
-    Response<WeatherForecastDto> getWeatherForecast(@Path("cityName") String cityName);
+    @GET("forecast?")
+    Call<WeatherForecastDto> getWeatherForecast(@Query("q") String cityName, @Query("appid") String appId);
 
 }

@@ -66,6 +66,7 @@
                 android:orientation="horizontal"
                 >
                 <ImageView
+                    android:id="@+id/ivWeather"
                     android:padding="20dp"
                     android:layout_width="match_parent"
                     android:layout_gravity="center"
@@ -79,7 +80,7 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:id="@+id/temp"
+                    android:id="@+id/tvTemp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -98,28 +99,54 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/temp_min"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Humedad: 44%"
-                    android:gravity="center"
+                <LinearLayout
                     android:layout_weight="1"
-                    />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/temp_min"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/humedity" />
+
+                    <TextView
+                        android:id="@+id/tvHumedity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        />
+                </LinearLayout>
+
 
                 <Space
                     android:layout_width="50dp"
                     android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/temp_max"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Viento: 30.9 m/s"
-                    android:gravity="center"
-                    android:layout_weight="1"
 
-                    />
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/wind" />
+
+                    <TextView
+                        android:id="@+id/tvWind"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        />
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>

@@ -1,34 +1,18 @@
 package com.example.climaapp.domain.entities;
 
+import androidx.room.Entity;
 import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import java.util.List;
 
+@Entity
 public class WeatherForecast{
-    private  String code;
-    private List<ListForecast> list;
+    @PrimaryKey(autoGenerate = true)
+    public Integer idWeatherForecast;
 
     @Ignore
-    public WeatherForecast(){}
+    public List<ListForecast> list;
 
-    public WeatherForecast(String code, List<ListForecast> list) {
-        this.code = code;
-        this.list = list;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public List<ListForecast> getList() {
-        return list;
-    }
-
-    public void setList(List<ListForecast> list) {
-        this.list = list;
-    }
+    public City city;
 }

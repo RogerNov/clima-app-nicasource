@@ -1,33 +1,18 @@
 package com.example.climaapp.domain.entities;
 
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
 import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
-public class Wind {
-    private Double speed;
-    private Integer deg;
+@Entity
+public class Wind{
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id_wind")
+    public int id;
 
-    @Ignore
-    public Wind(){}
+    public Double speed;
+    public Integer deg;
 
-    public Wind(Double speed, Integer deg) {
-        this.speed = speed;
-        this.deg = deg;
-    }
-
-    public Double getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(Double speed) {
-        this.speed = speed;
-    }
-
-    public Integer getDeg() {
-        return deg;
-    }
-
-    public void setDeg(Integer deg) {
-        this.deg = deg;
-    }
 }

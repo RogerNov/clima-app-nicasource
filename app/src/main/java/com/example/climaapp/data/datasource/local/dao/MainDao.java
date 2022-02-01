@@ -6,18 +6,18 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.climaapp.data.datasource.local.entity.MainEntity;
+import com.example.climaapp.domain.entities.Main;
 
 import java.util.List;
 
 @Dao
 public interface MainDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertMain(MainEntity mainEntity);
+    void insertMain(Main mainEntity);
 
-    @Query("SELECT * FROM  MainEntity")
-    List<MainEntity> getAll();
+    @Query("SELECT * FROM  Main")
+    List<Main> getAll();
 
     @Delete
-    void delete(MainEntity mainEntity);
+    void delete(Main mainEntity);
 }

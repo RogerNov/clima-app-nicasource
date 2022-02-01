@@ -1,6 +1,8 @@
 package com.example.climaapp.id;
 
-import com.example.climaapp.core.RetrofitHelper;
+import com.example.climaapp.data.datasource.local.CurrentWeatherLocalDataSource;
+import com.example.climaapp.data.datasource.local.CurrentWeatherLocalDataSourceImp;
+import com.example.climaapp.data.datasource.local.WeatherDatabase;
 import com.example.climaapp.data.datasource.remote.CurrentWeatherDataSource;
 import com.example.climaapp.data.datasource.remote.CurrentWeatherDataSourceImp;
 import com.example.climaapp.data.datasource.remote.WeatherApi;
@@ -28,5 +30,13 @@ public class DataSourceModule {
     @Provides
     public static WeatherForecastDataSource providerWeatherForecastDataSource(WeatherApi api){
         return new WeatherForeCastDataSourceImp(api);
+    }
+
+    @Singleton
+    @Provides
+    public static CurrentWeatherLocalDataSource providerCurrentWeatherLocalDataSource(
+            WeatherDatabase weatherDatabase
+    ){
+        return new CurrentWeatherLocalDataSourceImp(weatherDatabase);
     }
 }

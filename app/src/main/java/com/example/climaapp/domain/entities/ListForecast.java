@@ -1,32 +1,16 @@
 package com.example.climaapp.domain.entities;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
+import androidx.room.Entity;
 import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
+@Entity
 public class ListForecast {
-    private Main main;
-    private String dtTxt;
-
-    @Ignore
-    public ListForecast(){}
-
-    public ListForecast(Main main, String dtTxt) {
-        this.main = main;
-        this.dtTxt = dtTxt;
-    }
-
-    public Main getMain() {
-        return main;
-    }
-
-    public void setMain(Main main) {
-        this.main = main;
-    }
-
-    public String getDtTxt() {
-        return dtTxt;
-    }
-
-    public void setDtTxt(String dtTxt) {
-        this.dtTxt = dtTxt;
-    }
+    @PrimaryKey(autoGenerate = true)
+    public Integer idListForecast;
+    @Embedded(prefix = "main_")
+    public Main main;
+    public String dtTxt;
 }

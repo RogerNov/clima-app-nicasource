@@ -1,5 +1,6 @@
 package com.example.climaapp.id;
 
+import com.example.climaapp.data.datasource.local.CurrentWeatherLocalDataSource;
 import com.example.climaapp.data.datasource.local.dao.CurrentWeatherDao;
 import com.example.climaapp.data.datasource.remote.CurrentWeatherDataSource;
 import com.example.climaapp.data.datasource.remote.WeatherForecastDataSource;
@@ -25,9 +26,9 @@ public class RepositoryModule {
     @Provides
     public static WeatherRepository providerCurrentWeatherRepository(
             CurrentWeatherDataSource currentWeatherDataSource,
-            CurrentWeatherDao currentWeatherDao
+            CurrentWeatherLocalDataSource currentWeatherLocalDataSource
     ){
-        return new CurrentWeatherRepositoryImp(currentWeatherDataSource,currentWeatherDao);
+        return new CurrentWeatherRepositoryImp(currentWeatherDataSource,currentWeatherLocalDataSource);
     }
 
     @Singleton

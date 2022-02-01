@@ -15,15 +15,15 @@ import dagger.hilt.components.SingletonComponent;
 @InstallIn(SingletonComponent.class)
 public class DatabaseModule {
 
-    @Singleton
-    @Provides
-    public static CurrentWeatherDao providerCurrentWeatherDao(WeatherDatabase database){
-        return database.currentWeatherDao();
-    }
-
-    @Singleton
-    @Provides
-    public static WeatherForecastDao providerWeatherForecastDao(WeatherDatabase database){
-        return database.weatherForecastDao();
-    }
+//    @Singleton
+//    @Provides
+//    public static CurrentWeatherDao providerCurrentWeatherDao(WeatherDatabase database){
+//        return database.currentWeatherDao();
+//    }
+//
+//    @Singleton
+//    @Provides
+//    public static WeatherForecastDao providerWeatherForecastDao(WeatherDatabase database){
+//        return database.weatherForecastDao();
+//    }
 }

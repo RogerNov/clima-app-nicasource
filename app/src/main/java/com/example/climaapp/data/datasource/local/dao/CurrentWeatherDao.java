@@ -1,12 +1,13 @@
 package com.example.climaapp.data.datasource.local.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.climaapp.data.datasource.local.entity.CurrentWeatherEntity;
+import com.example.climaapp.domain.entities.CurrentWeather;
 
 import java.util.List;
 
@@ -14,15 +15,14 @@ import java.util.List;
 public interface CurrentWeatherDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertCurrentWeather(CurrentWeatherEntity currentWeatherEntity);
+    void insertCurrentWeather(CurrentWeather currentWeatherEntity);
 
-    @Query("SELECT * FROM  CurrentWeatherEntity")
-    List<CurrentWeatherEntity> getAll();
+    @Query("SELECT * FROM  CurrentWeather")
+    LiveData<List<CurrentWeather>> getAll();
 
-    @Query("SELECT * FROM CurrentWeatherEntity WHERE name LIKE :name")
-    CurrentWeatherEntity findByName(String name);
+    @Query("SELECT * FROM CurrentWeather WHERE name LIKE :name")
+    LiveData<CurrentWeather> findByName(String name);
 
     @Delete
-    void delete(CurrentWeatherEntity currentWeather);
-
+    void delete(CurrentWeather currentWeather);
 }

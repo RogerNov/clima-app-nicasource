@@ -1,6 +1,9 @@
 package com.example.climaapp.domain.use_case;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.climaapp.domain.entities.CurrentWeather;
+import com.example.climaapp.domain.entities.CurrentWeatherWithWeather;
 import com.example.climaapp.domain.repository.WeatherRepository;
 
 import java.util.List;
@@ -15,12 +18,20 @@ public class CurrentWeatherUseCase {
         this.weatherRepository = weatherRepository;
     }
 
-    public CurrentWeather getCurrentWeatherByName(String cityName){
+    public LiveData<CurrentWeather> getCurrentWeatherByName(String cityName){
         return this.weatherRepository.getCurrentWeather(cityName);
     }
 
-    public List<CurrentWeather> getListCurrentWeather(){
+    public LiveData<List<CurrentWeatherWithWeather>> getListCurrentWeather(){
         return this.weatherRepository.getListCurrentWeather();
+    }
+
+    public void insertCurrentWeather(CurrentWeather currentWeather){
+        this.weatherRepository.insertCurrentWeather(currentWeather);
+    }
+
+    public LiveData<CurrentWeather> getCurrentWeatherLocal(String cityName){
+        return weatherRepository.getCurrentWeatherLocal(cityName);
     }
 
 

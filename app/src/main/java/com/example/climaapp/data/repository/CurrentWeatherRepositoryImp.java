@@ -1,35 +1,52 @@
 package com.example.climaapp.data.repository;
 
-import com.example.climaapp.data.datasource.local.dao.CurrentWeatherDao;
-import com.example.climaapp.data.datasource.local.entity.CurrentWeatherEntity;
+import android.util.Log;
+
+import androidx.lifecycle.LiveData;
+
+import com.example.climaapp.data.datasource.local.CurrentWeatherLocalDataSource;
 import com.example.climaapp.data.datasource.remote.CurrentWeatherDataSource;
 import com.example.climaapp.domain.entities.CurrentWeather;
+import com.example.climaapp.domain.entities.CurrentWeatherWithWeather;
 import com.example.climaapp.domain.repository.WeatherRepository;
 
-import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
 
 public class CurrentWeatherRepositoryImp implements WeatherRepository {
     private final CurrentWeatherDataSource weatherDataSource;
-    private final CurrentWeatherDao currentWeatherDao;
+    private final CurrentWeatherLocalDataSource currentWeatherLocalDataSource;
 
     @Inject
-    public CurrentWeatherRepositoryImp(CurrentWeatherDataSource weatherDataSource, CurrentWeatherDao currentWeatherDao) {
+    public CurrentWeatherRepositoryImp(
+            CurrentWeatherDataSource weatherDataSource,
+            CurrentWeatherLocalDataSource currentWeatherLocalDataSource
+    ) {
         this.weatherDataSource = weatherDataSource;
-        this.currentWeatherDao = currentWeatherDao;
+        this.currentWeatherLocalDataSource = currentWeatherLocalDataSource;
     }
 
     @Override
-    public CurrentWeather getCurrentWeather(String cityName) {
-       return this.weatherDataSource.getCurrentWeather(cityName);
+    public LiveData<CurrentWeather> getCurrentWeather(String cityName) {
+       return weatherDataSource.getCurrentWeather(cityName);
     }
 
     @Override
-    public List<CurrentWeather> getListCurrentWeather() {
-         List<CurrentWeatherEntity> current = currentWeatherDao.getAll();
-         return Collections.emptyList();
+    public LiveData<CurrentWeather> getCurrentWeatherLocal(String cityName) {
+
+        return currentWeatherLocalDataSource.getCurrentWeather(cityName);
+    }
+
+    @Override
+    public LiveData<List<CurrentWeatherWithWeather>> getListCurrentWeather() {
+        return currentWeatherLocalDataSource.getCurrentWeathers();
+    }
+
+    @Override
+    public void insertCurrentWeather(CurrentWeather weather) {
+        Log.d("Eureka","Se encontro");
+        currentWeatherLocalDataSource.insertCurrentWeather(weather);
     }
 
 }

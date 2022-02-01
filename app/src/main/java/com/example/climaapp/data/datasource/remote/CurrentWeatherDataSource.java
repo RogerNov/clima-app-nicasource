@@ -1,9 +1,11 @@
 package com.example.climaapp.data.datasource.remote;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.climaapp.domain.entities.CurrentWeather;
 
 public interface CurrentWeatherDataSource {
-    CurrentWeather getCurrentWeather(String cityName);
+    LiveData<CurrentWeather> getCurrentWeather(String cityName);
 }
 
 
