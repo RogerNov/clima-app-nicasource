@@ -18,10 +18,10 @@ public interface CurrentWeatherDao {
     void insertCurrentWeather(CurrentWeather currentWeatherEntity);
 
     @Query("SELECT * FROM  CurrentWeather")
-    LiveData<List<CurrentWeather>> getAll();
+    List<CurrentWeather> getAll();
 
     @Query("SELECT * FROM CurrentWeather WHERE name LIKE :name")
-    LiveData<CurrentWeather> findByName(String name);
+    CurrentWeather findByName(String name);
 
     @Delete
     void delete(CurrentWeather currentWeather);

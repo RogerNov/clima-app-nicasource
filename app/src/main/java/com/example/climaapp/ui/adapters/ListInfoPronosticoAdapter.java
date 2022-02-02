@@ -8,27 +8,30 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.climaapp.R;
+import com.example.climaapp.domain.entities.ListForecast;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
 
 public class ListInfoPronosticoAdapter extends BaseAdapter {
     private Context context;
     private int layout;
-    private ArrayList<String> names;
+    private List<ListForecast> listForecasts;
 
-    public ListInfoPronosticoAdapter(Context context, int layout, ArrayList<String> names){
+    public ListInfoPronosticoAdapter(Context context, int layout, List<ListForecast> listForecasts){
         this.context = context;
         this.layout = layout;
-        this.names = names;
+        this.listForecasts = listForecasts;
     }
     @Override
     public int getCount() {
-        return this.names.size();
+        return this.listForecasts.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return this.names.get(i);
+        return this.listForecasts.get(i);
     }
 
     @Override
@@ -38,15 +41,20 @@ public class ListInfoPronosticoAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        View v = view;
 
         LayoutInflater layoutInflater = LayoutInflater.from(this.context);
-        v = layoutInflater.inflate(R.layout.list_item_pronostico, null);
+        view = layoutInflater.inflate(R.layout.list_item_pronostico, null);
 
-        String CurrentName = names.get(i);
+        ListForecast forecast = listForecasts.get(i);
+        TextView tvTemp = (TextView) view.findViewById(R.id.tvTempInfo);
+        TextView tvDate = (TextView) view.findViewById(R.id.tvDateInfo);
 
-        TextView textView = (TextView) v.findViewById(R.id.tvDate);
-        textView.setText(CurrentName);
-        return v;
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String dateTime = simpleDateFormat.format(calendar.getTime());
+
+        tvTemp.setText(String.valueOf(forecast.main.temp));
+        tvDate.setText(dateTime);
+        return view;
     }
 }

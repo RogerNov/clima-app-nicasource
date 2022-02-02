@@ -17,7 +17,6 @@ import retrofit2.Response;
 
 public class WeatherForeCastDataSourceImp implements  WeatherForecastDataSource{
     final WeatherApi weatherApi;
-    private MutableLiveData<WeatherForecast> currentWeatherMutableLiveData;
 
     @Inject
     public WeatherForeCastDataSourceImp(WeatherApi weatherApi) {
@@ -26,10 +25,9 @@ public class WeatherForeCastDataSourceImp implements  WeatherForecastDataSource{
 
 
     @Override
-    public LiveData<WeatherForecast> getWeatherForeCast(String cityName) {
-        currentWeatherMutableLiveData = new MutableLiveData<>();
-        Call<WeatherForecastDto> call = weatherApi.getWeatherForecast(cityName, Constants.API_KEY);
-        call.enqueue(new Callback<WeatherForecastDto>() {
+    public Call<WeatherForecastDto> getWeatherForeCast(String cityName) {
+        return  weatherApi.getWeatherForecast(cityName, Constants.API_KEY);
+        /*call.enqueue(new Callback<WeatherForecastDto>() {
             @Override
             public void onResponse(Call<WeatherForecastDto> call, Response<WeatherForecastDto> response) {
                 if(response.isSuccessful()){
@@ -45,6 +43,6 @@ public class WeatherForeCastDataSourceImp implements  WeatherForecastDataSource{
             }
         });
 
-        return currentWeatherMutableLiveData;
+        return currentWeatherMutableLiveData;*/
     }
 }

@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 public class WeatherDto extends Weather {
 
     @SerializedName("id")
-    private transient Integer id;
+    private transient Integer idCurrentWeather;
 
     @SerializedName("main")
     private transient String main;
@@ -17,6 +17,9 @@ public class WeatherDto extends Weather {
 
     @SerializedName("icon")
     private transient String icon;
+
+    @SerializedName("id")
+    private transient Integer id;
 
 
 }

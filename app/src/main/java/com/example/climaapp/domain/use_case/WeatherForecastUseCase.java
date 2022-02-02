@@ -16,11 +16,7 @@ public class WeatherForecastUseCase {
         this.weatherForecastRepository = weatherForecastRepository;
     }
 
-    public LiveData<WeatherForecast> getWeatherForecast(String cityName){
-        return weatherForecastRepository.getWeatherForecast(cityName);
-    }
-
-    public LiveData<WeatherForecast> getWeatherForecastLocal(){
-        return null;
+    public LiveData<WeatherForecast> getWeatherForecastLocal(String cityName){
+        return this.weatherForecastRepository.getWeatherForecast(cityName);
     }
 }

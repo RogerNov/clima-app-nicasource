@@ -1,4 +1,4 @@
-package com.example.climaapp.ui;
+package com.example.climaapp.ui.viewmodels;
 
 import android.util.Log;
 
@@ -33,25 +33,13 @@ public class CurrentWeatherViewModel extends ViewModel {
         this.savedStateHandle = savedStateHandle;
     }
 
-    public LiveData<CurrentWeather> getCity(String data){
-        LiveData<CurrentWeather> currentWeather = currentWeatherUseCase.getCurrentWeatherByName(data);
-        return  currentWeather;
-    }
+
     public LiveData<List<CurrentWeatherWithWeather>> getListCity(){
         return currentWeatherUseCase.getListCurrentWeather();
     }
 
-    public void insertWeather(CurrentWeather currentWeather){
-        currentWeatherUseCase.insertCurrentWeather(currentWeather);
+    public LiveData<Boolean> insertWeather(String cityName){
+       return currentWeatherUseCase.insertCurrentWeather(cityName);
     }
 
-    public LiveData<CurrentWeather> getWeatherLocal(String name){
-        return currentWeatherUseCase.getCurrentWeatherLocal(name);
-    }
-
-    public LiveData<Boolean> Loaded(){
-        estado = new MutableLiveData<>();
-        estado.setValue(true);
-        return estado;
-    }
 }

@@ -13,17 +13,17 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.climaapp.ui.CurrentWeatherViewModel;
+import com.example.climaapp.data.repository.CurrentWeatherRepositoryImp;
+import com.example.climaapp.domain.entities.CurrentWeather;
+import com.example.climaapp.domain.entities.CurrentWeatherWithWeather;
+import com.example.climaapp.ui.viewmodels.CurrentWeatherViewModel;
 import com.example.climaapp.ui.adapters.ListWeatherAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
-
-import javax.inject.Inject;
+import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
-import retrofit2.Retrofit;
 
 @AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private Dialog dialog;
     private EditText etNameCity;
     private CurrentWeatherViewModel viewModel;
+    ListWeatherAdapter listWeatherAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,25 +51,27 @@ public class MainActivity extends AppCompatActivity {
 
         geWeathers();
         createNewWeather();
-        infoPredictionWeather();
+        //infoPredictionWeather();
     }
 
     void geWeathers(){
         viewModel.getListCity().observe(this,  listWeather ->{
             if(listWeather.size()>0){
-
-                ListWeatherAdapter listWeatherAdapter = new ListWeatherAdapter(this, R.layout.list_item, listWeather);
+                listWeatherAdapter = new ListWeatherAdapter(this, R.layout.list_item, listWeather);
                 listView.setAdapter(listWeatherAdapter);
             }
+
+            infoPredictionWeather(listWeather);
 
         });
     }
 
-    void infoPredictionWeather(){
+    void infoPredictionWeather(List<CurrentWeatherWithWeather> list){
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getApplicationContext(), PronosticoinfoActivity.class);
+                intent.putExtra("City", list.get(i).currentWeatherEntity);
                 startActivity(intent);
             }
         });
@@ -102,22 +105,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     void getCurrentWeather(String city){
-        viewModel.getCity(city).observe(this,
-                currentWeather ->{
-                    if(currentWeather!=null){
-                        viewModel.getWeatherLocal(currentWeather.name).observe(this, weatherLocal ->{
-                            if(weatherLocal==null){
-                                viewModel.insertWeather(currentWeather);
-                            }
-                        });
-                    }else{
-                        Toast.makeText(MainActivity.this,city+" no fue encontrada",
-                                Toast.LENGTH_LONG).show();
-                    }
-
-
-                }
-        );
+        viewModel.insertWeather(city).observe(this, stateInsert ->{
+            Toast.makeText(MainActivity.this,stateInsert?city+" no fue encontrada":city+" no fue encontrada",
+                    Toast.LENGTH_LONG).show();
+        });
     }
 
   /* void message(View view){

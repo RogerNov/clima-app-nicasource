@@ -10,16 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.climaapp.R;
-import com.example.climaapp.domain.entities.CurrentWeather;
 import com.example.climaapp.domain.entities.CurrentWeatherWithWeather;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListWeatherAdapter extends BaseAdapter {
     private Context context;
     private int layout;
     private List<CurrentWeatherWithWeather> weathers;
+
 
     public ListWeatherAdapter(Context context, int layout, List<CurrentWeatherWithWeather> names){
         this.context = context;
@@ -54,6 +53,8 @@ public class ListWeatherAdapter extends BaseAdapter {
         TextView tvHumedity = (TextView) v.findViewById(R.id.tvHumedity);
         TextView tvTemp = (TextView) v.findViewById(R.id.tvTemp);
         TextView tvWind = (TextView) v.findViewById(R.id.tvWind);
+        TextView tvStatus = (TextView) v.findViewById(R.id.tvStatus);
+
         ImageView ivWeather = (ImageView) v.findViewById(R.id.ivWeather);
 
 
@@ -62,15 +63,26 @@ public class ListWeatherAdapter extends BaseAdapter {
         tvTemp.setText(String.valueOf(currentWeather.currentWeatherEntity.main.temp));
         tvWind.setText(String.valueOf(currentWeather.currentWeatherEntity.wind.speed));
 
-        Log.d("Totales "+i, String.valueOf(currentWeather.weathers.size()));
+
         if(currentWeather.weathers.size() >0){
+            tvStatus.setText(currentWeather.weathers.get(0).description);
+
+            String pathImage = currentWeather.weathers.get(0).icon;
+
             int resId = context.getResources().getIdentifier(
-                    currentWeather.weathers.get(0).icon,
+                    "sw_"+pathImage.substring(0, pathImage.length()-1),
                     "drawable", context.getPackageName()
             );
 
             ivWeather.setImageResource(resId);
         }
+
+        ivWeather.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("fasfasdf", "fasdf");
+            }
+        });
 
         return v;
     }

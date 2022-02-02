@@ -11,6 +11,7 @@ import com.example.climaapp.data.datasource.local.dao.WeatherDao;
 import com.example.climaapp.data.datasource.local.dao.WeatherForecastDao;
 import com.example.climaapp.data.datasource.local.dao.WeatherForecastWithListForecastDao;
 import com.example.climaapp.data.datasource.local.dao.WindDao;
+import com.example.climaapp.domain.entities.City;
 import com.example.climaapp.domain.entities.CurrentWeather;
 import com.example.climaapp.domain.entities.CurrentWeatherWeatherCrossRef;
 import com.example.climaapp.domain.entities.ListForecast;
@@ -30,6 +31,7 @@ import com.example.climaapp.domain.entities.Wind;
                 WeatherForecast.class,
                 CurrentWeatherWeatherCrossRef.class,
                 WeatherForecastListForecastCrossRef.class,
+                City.class
         },
         version = 1,
         exportSchema = false

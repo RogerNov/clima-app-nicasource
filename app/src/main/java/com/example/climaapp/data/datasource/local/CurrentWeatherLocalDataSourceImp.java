@@ -13,11 +13,14 @@ import com.example.climaapp.domain.entities.Weather;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class CurrentWeatherLocalDataSourceImp implements  CurrentWeatherLocalDataSource{
     private final WeatherDatabase weatherDatabase;
     private MutableLiveData<List<CurrentWeather>> currentWeatherMutableList;
     private MutableLiveData<CurrentWeather> currentWeatherMutableLiveData;
 
+    @Inject
     public CurrentWeatherLocalDataSourceImp(WeatherDatabase weatherDatabase) {
         this.weatherDatabase = weatherDatabase;
     }
@@ -27,18 +30,17 @@ public class CurrentWeatherLocalDataSourceImp implements  CurrentWeatherLocalDat
     public void insertCurrentWeather(CurrentWeather currentWeather) {
 
         CurrentWeatherWeatherCrossRef crossRef = new CurrentWeatherWeatherCrossRef();
-
+        currentWeather.idCurrentWeather =currentWeather.id;
         crossRef.idCurrentWeather = currentWeather.idCurrentWeather;
 
+        weatherDatabase.currentWeatherDao().insertCurrentWeather(currentWeather);
+
         for(Weather weather: currentWeather.weather){
+            weather.idWeather = weather.id;
             crossRef.idWeather = weather.idWeather;
             weatherDatabase.weatherDao().insertWeather(weather);
             weatherDatabase.currentWeatherWithWeatherDao().insert(crossRef);
         }
-        Log.d("Totales en weather", String.valueOf(currentWeather.weather.size()));
-        //weatherDatabase.weatherDao().insertWeatherList(currentWeather.weather);
-        weatherDatabase.currentWeatherDao().insertCurrentWeather(currentWeather);
-
     }
 
     @Override
@@ -47,7 +49,12 @@ public class CurrentWeatherLocalDataSourceImp implements  CurrentWeatherLocalDat
     }
 
     @Override
-    public LiveData<CurrentWeather> getCurrentWeather(String cityName) {
+    public CurrentWeather getCurrentWeather(String cityName) {
         return weatherDatabase.currentWeatherDao().findByName(cityName);
+    }
+
+    @Override
+    public void deleteCurrentWeather(CurrentWeather currentWeather) {
+        weatherDatabase.currentWeatherDao().delete(currentWeather);
     }
 }

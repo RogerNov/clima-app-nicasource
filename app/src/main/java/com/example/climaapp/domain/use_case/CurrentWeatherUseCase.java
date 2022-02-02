@@ -18,21 +18,14 @@ public class CurrentWeatherUseCase {
         this.weatherRepository = weatherRepository;
     }
 
-    public LiveData<CurrentWeather> getCurrentWeatherByName(String cityName){
-        return this.weatherRepository.getCurrentWeather(cityName);
-    }
-
     public LiveData<List<CurrentWeatherWithWeather>> getListCurrentWeather(){
         return this.weatherRepository.getListCurrentWeather();
     }
 
-    public void insertCurrentWeather(CurrentWeather currentWeather){
-        this.weatherRepository.insertCurrentWeather(currentWeather);
+    public LiveData<Boolean> insertCurrentWeather(String cityName){
+        return this.weatherRepository.insertCurrentWeather(cityName);
     }
 
-    public LiveData<CurrentWeather> getCurrentWeatherLocal(String cityName){
-        return weatherRepository.getCurrentWeatherLocal(cityName);
-    }
 
 
 }

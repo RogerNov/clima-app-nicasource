@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName;
 public class CityDto{
 
     @SerializedName("id")
-    public int id;
+    public transient int id;
 
     @SerializedName("name")
-    public String name;
+    public transient String name;
 }

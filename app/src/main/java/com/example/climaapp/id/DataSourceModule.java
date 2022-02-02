@@ -3,6 +3,8 @@ package com.example.climaapp.id;
 import com.example.climaapp.data.datasource.local.CurrentWeatherLocalDataSource;
 import com.example.climaapp.data.datasource.local.CurrentWeatherLocalDataSourceImp;
 import com.example.climaapp.data.datasource.local.WeatherDatabase;
+import com.example.climaapp.data.datasource.local.WeatherForecastLocalDataSource;
+import com.example.climaapp.data.datasource.local.WeatherForecastLocalDataSourceImp;
 import com.example.climaapp.data.datasource.remote.CurrentWeatherDataSource;
 import com.example.climaapp.data.datasource.remote.CurrentWeatherDataSourceImp;
 import com.example.climaapp.data.datasource.remote.WeatherApi;
@@ -39,4 +41,13 @@ public class DataSourceModule {
     ){
         return new CurrentWeatherLocalDataSourceImp(weatherDatabase);
     }
+
+    @Singleton
+    @Provides
+    public static WeatherForecastLocalDataSource providerWeatherForecastLocalDataSource(
+            WeatherDatabase weatherDatabase
+    ){
+        return new WeatherForecastLocalDataSourceImp(weatherDatabase);
+    }
+
 }

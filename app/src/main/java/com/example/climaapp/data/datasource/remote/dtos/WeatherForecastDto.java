@@ -10,6 +10,6 @@ public class WeatherForecastDto extends WeatherForecast {
     private transient List<ListForecastDto> list ;
 
     @SerializedName("city")
-    private CityDto city;
+    private transient CityDto city;
 
 }

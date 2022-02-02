@@ -1,9 +1,8 @@
 package com.example.climaapp.data.datasource.remote;
 
-import androidx.lifecycle.LiveData;
-
-import com.example.climaapp.domain.entities.WeatherForecast;
+import com.example.climaapp.data.datasource.remote.dtos.WeatherForecastDto;
+import retrofit2.Call;
 
 public interface WeatherForecastDataSource {
-    LiveData<WeatherForecast> getWeatherForeCast(String cityName);
+    Call<WeatherForecastDto> getWeatherForeCast(String cityName);
 }

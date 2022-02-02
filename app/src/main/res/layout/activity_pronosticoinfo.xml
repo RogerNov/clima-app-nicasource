@@ -21,7 +21,7 @@
             >
 
             <TextView
-                android:id="@+id/tvCityName"
+                android:id="@+id/tvCityInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -31,7 +31,7 @@
                 android:textSize="22dp" />
 
             <TextView
-                android:id="@+id/temp"
+                android:id="@+id/tvTempInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -39,14 +39,6 @@
                 android:text="29°C"
                 android:textColor="@color/white"
                 android:textSize="90dp" />
-            <TextView
-                android:id="@+id/status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Clear Sky"
-                android:textColor="@color/white"
-                android:textSize="18dp" />
 
         </LinearLayout>
 
@@ -66,7 +58,7 @@
                 android:padding="8dp">
 
                 <LinearLayout
-                    android:paddingHorizontal="5dp"
+                    android:paddingHorizontal="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#3CF1EBF1"
@@ -91,10 +83,9 @@
                         android:textSize="12dp" />
 
                     <TextView
-                        android:id="@+id/sunset"
+                        android:id="@+id/tvWindInfo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="06:40 AM"
                         android:textColor="@color/white"
                         android:textSize="14dp" />
 
@@ -117,7 +108,7 @@
                 android:padding="8dp">
 
                 <LinearLayout
-                    android:paddingHorizontal="5dp"
+                    android:paddingHorizontal="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#3CF1EBF1"
@@ -143,10 +134,9 @@
                         />
 
                     <TextView
-                        android:id="@+id/wind"
+                        android:id="@+id/tvHumedityInfo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="06:40 AM"
                         android:textColor="@color/white"
                         android:textSize="14dp" />
 

@@ -6,10 +6,11 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class CurrentWeather{
+public class CurrentWeather implements Serializable {
     @PrimaryKey
     public  Integer idCurrentWeather;
     @Ignore
@@ -20,5 +21,9 @@ public class CurrentWeather{
     @Embedded(prefix = "wind_")
     public  Wind wind;
     public  String name;
+    @Ignore
+    public Integer cod;
+    @Ignore
+    public Integer id;
 
 }

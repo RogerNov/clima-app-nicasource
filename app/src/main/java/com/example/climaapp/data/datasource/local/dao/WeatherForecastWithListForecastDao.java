@@ -18,7 +18,7 @@ public interface WeatherForecastWithListForecastDao {
     void insert(WeatherForecastListForecastCrossRef crossRef);
 
     @Transaction
-    @Query("SELECT * FROM CurrentWeather")
-    LiveData<List<WeatherForecastListForecast>> getCurrent();
+    @Query("SELECT * FROM WeatherForecast")
+    List<WeatherForecastListForecast> getCurrent();
 
 }

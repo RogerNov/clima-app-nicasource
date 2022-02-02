@@ -7,6 +7,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
+import com.example.climaapp.domain.entities.ListForecast;
 import com.example.climaapp.domain.entities.WeatherForecast;
 
 import java.util.List;
@@ -19,8 +20,12 @@ public interface WeatherForecastDao {
     @Query("SELECT * FROM  WeatherForecast")
     LiveData<List<WeatherForecast>> getAll();
 
-    /*@Query("SELECT * FROM WeatherForecast WHERE name LIKE :cod")
-    WeatherForecast findByName(String name);*/
+
+    @Query("SELECT * FROM  WeatherForecast wf INNER JOIN City c ON wf.id = c.id WHERE c.name = :cityName")
+    WeatherForecast getByName(String cityName);
+
+    @Query("SELECT * FROM WeatherForecast ORDER BY idWeatherForecast DESC LIMIT 1 ")
+    WeatherForecast getLastForecast();
 
     @Delete
     void delete(WeatherForecast weatherForecastEntity);

@@ -20,7 +20,6 @@ import retrofit2.Response;
 
 public class CurrentWeatherDataSourceImp implements CurrentWeatherDataSource {
     private final WeatherApi weatherApi;
-    private MutableLiveData<CurrentWeather> currentWeatherMutableLiveData;
 
 
     @Inject
@@ -29,14 +28,17 @@ public class CurrentWeatherDataSourceImp implements CurrentWeatherDataSource {
     }
 
     @Override
-    public LiveData<CurrentWeather> getCurrentWeather(String cityName) {
-
-            currentWeatherMutableLiveData = new MutableLiveData<>();
+    public Call<CurrentWeatherDto> getCurrentWeather(String cityName) {
+        return weatherApi.getCurrentWeather(cityName, Constants.API_KEY);
+         /*   currentWeatherMutableLiveData = new MutableLiveData<>();
             Call<CurrentWeatherDto> call = weatherApi.getCurrentWeather(cityName, Constants.API_KEY);
             call.enqueue(new Callback<CurrentWeatherDto>() {
                 @Override
                 public void onResponse(Call<CurrentWeatherDto> call, Response<CurrentWeatherDto> response) {
                    if(response.isSuccessful()){
+                       CurrentWeather currentWeather = response.body();
+                       Log.d("Pruebas", currentWeather.base);
+                       Log.d("Pruebas id", String.valueOf(currentWeather.weather.get(0).idWeather));
                        currentWeatherMutableLiveData.setValue(response.body());
                    }else{
                        currentWeatherMutableLiveData.setValue(null);
@@ -51,7 +53,7 @@ public class CurrentWeatherDataSourceImp implements CurrentWeatherDataSource {
                 }
             });
 
-        return currentWeatherMutableLiveData;
+        return currentWeatherMutableLiveData;*/
 
     }
 }
