@@ -7,5 +7,4 @@ import com.example.climaapp.domain.entities.WeatherForecastListForecast;
 public interface WeatherForecastLocalDataSource {
     void insertWeatherForecast(WeatherForecast weatherForecast);
     WeatherForecastListForecast getWeatherForecast(String names);
-
 }

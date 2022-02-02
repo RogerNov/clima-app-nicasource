@@ -40,22 +40,31 @@ public class WeatherForecastLocalDataSourceImp implements WeatherForecastLocalDa
 
     @Override
     public WeatherForecastListForecast getWeatherForecast(String cityName) {
-        WeatherForecastListForecast datas  = new WeatherForecastListForecast();
+        Boolean isCity = false;
+        WeatherForecastListForecast datas  =null;
 
-        Log.d("Rsfd", "sdfasdfasdf");
-        WeatherForecast weatherForecast =  weatherDatabase.weatherForecastDao().getByName(cityName);
-        if(weatherForecast!=null){
-        Log.d("todo bien","asdfasdf");
-            List<WeatherForecastListForecast> f = weatherDatabase.weatherForecastWithListForecastDao().getCurrent();
+        List<WeatherForecast> weatherForecastLista =  weatherDatabase.weatherForecastDao().getAllForecast();
 
-            if(f.size() >0){
-                for(WeatherForecastListForecast wflf: f){
-                    if(wflf.weatherForecast.city.name.compareTo(cityName)==0){
-                        datas = wflf;
+        for(WeatherForecast wf: weatherForecastLista){
+            if(wf.city.name.compareTo(cityName)==0){
+               isCity = true;
+            }
+        }
+
+        if(isCity){
+            WeatherForecast weatherForecast =  weatherDatabase.weatherForecastDao().getByName(cityName);
+            if(weatherForecast!=null){
+                List<WeatherForecastListForecast> f = weatherDatabase.weatherForecastWithListForecastDao().getCurrent();
+                if(f.size() >0){
+                    for(WeatherForecastListForecast wflf: f){
+                        if(wflf.weatherForecast.city.name.compareTo(cityName)==0){
+                            datas = wflf;
+                        }
                     }
                 }
             }
         }
+
        return  datas;
     }
 

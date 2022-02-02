@@ -20,8 +20,11 @@ public interface WeatherForecastDao {
     @Query("SELECT * FROM  WeatherForecast")
     LiveData<List<WeatherForecast>> getAll();
 
+    @Query("SELECT * FROM  WeatherForecast")
+    List<WeatherForecast> getAllForecast();
 
-    @Query("SELECT * FROM  WeatherForecast wf INNER JOIN City c ON wf.id = c.id WHERE c.name = :cityName")
+
+    @Query("SELECT * FROM  WeatherForecast wf INNER JOIN City c ON wf.id = c.id WHERE c.name LIKE :cityName")
     WeatherForecast getByName(String cityName);
 
     @Query("SELECT * FROM WeatherForecast ORDER BY idWeatherForecast DESC LIMIT 1 ")
